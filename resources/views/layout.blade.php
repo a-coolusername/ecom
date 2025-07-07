@@ -65,20 +65,12 @@
         <nav>
             <ul>
                 <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">Cart</a></li>
             </ul>
         </nav>
 
         <div class="container">
-            <aside class="sidebar">
-                <h2>Sidebar</h2>
-                <ul>
-                    <li><a href="#">Students</a></li>
-                    <li><a href="#">Class</a></li>
-                </ul>
-            </aside>
             <main class="main-content">
                 @yield('content')
             </main>
