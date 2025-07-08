@@ -1,4 +1,15 @@
 @extends('layout')
+
+@section('header')
+            <ul style="background-color: #004080;">
+                <li><a href="#">Electronics</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Pets</a></li>
+                <li><a href="#">Games</a></li>
+                <li><a href="#">Clothes</a></li>
+            </ul>
+@endsection
+
 @section('content')
 <div class='grid-container'>
     <div><p>1</p></div>
@@ -31,5 +42,23 @@
   padding: 5px;
   font-size: 30px;
 }
+
+nav {
+    padding: 0;
+    margin: 0;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background: hsl(210, 100%, 35.5%);
+    display: flex;
+}
+
+nav ul + ul {
+    margin-top: 0; /* remove space between the two ul elements */
+}
+
 </style>
 @endsection

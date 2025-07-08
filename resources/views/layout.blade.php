@@ -18,13 +18,13 @@
             nav ul {
                 list-style-type: none;
                 padding: 0;
-                background: #005bb5;
+                background:hsl(210, 100.00%, 35.50%);
                 overflow: hidden;
                 display: flex;
                 justify-content: center;
             }
 
-            nav ul li {
+            ul li {
                 padding: 14px 20px;
             }
 
@@ -68,8 +68,8 @@
                 <li><a href="/products">Products</a></li>
                 <li><a href="/products/cart">Cart</a></li>
             </ul>
+            @yield('header')
         </nav>
-
         <div class="container">
             <main class="main-content">
                 @yield('content')
