@@ -11,17 +11,22 @@
 @endsection
 @section('styles')
 <style>
+    body{
+        background:hsl(0, 0%, 94%);
+    }
     .main-container{
+        background-color: hsl(0, 0%, 60%);
         padding: 10px;
+        border-radius: 20px;
     }
     .main-text{
         font-family: Arial, sans-serif;
-        color: hsl(0, 0%, 71%);
+        color: hsl(0, 0%, 81%);
         font-size: 30px;
     }
     .subtle-text{
         font-family: Arial, sans-serif;
-        color: hsl(0, 0%, 81%);
+        color: hsl(0, 0%, 94%);
         font-size: 20px;
     }
 </style>
