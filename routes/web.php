@@ -4,9 +4,10 @@ use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::prefix('products')->group(function(){
     Route::get('/', [ProductController::class, 'all']);
+    Route::get('/cart', [ProductController::class, 'cart']);
 });

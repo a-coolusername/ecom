@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     function all(){
-        echo "hello";
+        return view('allProducts');
+    }
+    function cart(){
+        return view('cart');
     }
 }
