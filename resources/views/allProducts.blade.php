@@ -18,7 +18,7 @@
 
 @foreach ( $products as $product)
   <div class='product-box'>
-    <p class='price'>{{$product->price}}</p>
+    <p class='price'>${{$product->price}}</p>
 
     <img src="{{ asset('storage/' . $product->image) }}" alt="Image Not Found" width="150" height="300" class='image'>
 
