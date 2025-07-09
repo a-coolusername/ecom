@@ -18,8 +18,10 @@
 @foreach ( $products as $product)
   <div class='product-box'>
     <p class='price'>{{$product->price}}</p>
-    <h4>{{$product->name}}</h4>
 
+    <img src="{{ asset('storage/' . $product->image) }}" alt="Image Not Found" width="200" height="300">
+
+    <h4>{{$product->name}}</h4>
     @php use Illuminate\Support\Str; @endphp
     <p class='product-description'>{{ Str::limit($product->description, 50, '...') }}</p>
   </div>
