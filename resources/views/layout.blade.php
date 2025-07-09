@@ -66,7 +66,7 @@
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/products">Products</a></li>
-                <li><a href="/products/cart">Cart</a></li>
+                <li><a href="/products/cart">Cart @yield('Count')</a></li>
             </ul>
             @yield('header')
         </nav>

@@ -31,7 +31,7 @@
         <div class='product-add'>
           <form action="/products" Method="POST">
             @csrf
-            <button type='submit'>hi</button>
+            <button type='submit'>add to cart</button>
           </form>
         </div>
       </div>
