@@ -29,7 +29,10 @@
           <p class='product-description'>{{ Str::limit($product->description, 50, '...') }}</p>
         </div>
         <div class='product-add'>
-          <button>hi</button>
+          <form action="/products" Method="POST">
+            @csrf
+            <button type='submit'>hi</button>
+          </form>
         </div>
       </div>
     </div>
