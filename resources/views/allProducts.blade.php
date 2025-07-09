@@ -16,7 +16,7 @@
 
 
 @foreach ( $products as $product)
-  <div>
+  <div class='product-box'>
     <p class='price'>{{$product->price}}</p>
     <h4>{{$product->name}}</h4>
 
@@ -85,6 +85,14 @@ nav ul + ul {
   right: 0;
   width: 20px;
   height: 10px;
+  background-color: hsl(147, 50%, 47%);
+  border: 1px solid black;  
+}
+.price:hover{
+  background-color: hsl(147, 50%, 30%);
+}
+.product-box {
+  position: relative; 
 }
 </style>
 @endsection
