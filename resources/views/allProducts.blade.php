@@ -1,3 +1,4 @@
+    @php use Illuminate\Support\Str; @endphp
 @extends('layout')
 
 @section('header')
@@ -22,13 +23,12 @@
     <img src="{{ asset('storage/' . $product->image) }}" alt="Image Not Found" width="200" height="300">
 
     <h4>{{$product->name}}</h4>
-    @php use Illuminate\Support\Str; @endphp
     <p class='product-description'>{{ Str::limit($product->description, 50, '...') }}</p>
   </div>
 @endforeach
 
 
-    <div><p>1</p></div>
+    <!-- <div><p>1</p></div>
     <div><p>2</p></div>
     <div><p>3</p></div>
     <div><p>4</p></div>
@@ -36,7 +36,7 @@
     <div><p>6</p></div>
     <div><p>7</p></div>
     <div><p>8</p></div>
-    <div><p>9</p></div>
+    <div><p>9</p></div> -->
 </div>
 @endsection
 @section('styles')
