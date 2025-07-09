@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class ProductController extends Controller
 {
     function all(){
-        return view('allProducts');
+        $products = Product::all();
+        return view('allProducts', compact('products'));
     }
     function cart(){
         return view('cart');
