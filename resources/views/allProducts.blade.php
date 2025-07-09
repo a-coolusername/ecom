@@ -20,23 +20,21 @@
   <div class='product-box'>
     <p class='price'>{{$product->price}}</p>
 
-    <img src="{{ asset('storage/' . $product->image) }}" alt="Image Not Found" width="200" height="300">
+    <img src="{{ asset('storage/' . $product->image) }}" alt="Image Not Found" width="150" height="300" class='image'>
 
-    <h4>{{$product->name}}</h4>
-    <p class='product-description'>{{ Str::limit($product->description, 50, '...') }}</p>
+    <div class='product-details'>
+      <div class='details-container'>
+        <div class='text-container'>
+          <p class='product-name'>{{$product->name}}</p>
+          <p class='product-description'>{{ Str::limit($product->description, 50, '...') }}</p>
+        </div>
+        <div class='product-add'>
+          <button>hi</button>
+        </div>
+      </div>
+    </div>
   </div>
 @endforeach
-
-
-    <!-- <div><p>1</p></div>
-    <div><p>2</p></div>
-    <div><p>3</p></div>
-    <div><p>4</p></div>
-    <div><p>5</p></div>
-    <div><p>6</p></div>
-    <div><p>7</p></div>
-    <div><p>8</p></div>
-    <div><p>9</p></div> -->
 </div>
 @endsection
 @section('styles')
@@ -78,23 +76,59 @@ nav ul + ul {
 
 
 .product-description{
-  font-size: 10px;
+  font-size: 10px !important;
   color:hsl(0, 0.00%, 80%);
+  margin:0px;
 }
 .price{
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+
   position: absolute;
-  top: 0px;
+  top: 0;
   right: 0;
-  width: 20px;
-  height: 10px;
+  width: 30px;
+  height: 20px;
   background-color: hsl(147, 50%, 47%);
   border: 1px solid black;  
+  margin: 0px;
+}
+.product-details{
+  display: flex;
+  flex-wrap: wrap;
+  text-align: left;
+  align-items: flex-end;
+  height: 100%;
+}
+.text-container, .details-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; 
+}
+.image{
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .price:hover{
   background-color: hsl(147, 50%, 30%);
 }
 .product-box {
-  position: relative; 
+  position: relative;
+  width: 200px;
+  height: 400px;
+}
+.product-name{
+  color:black;
+  font-weight: bold;
+  font-size: 15px !important;
+  margin: 0px;
+}
+.product-add{
+  display: flex;
+  justify-content: center;
+  margin:0px;
 }
 </style>
 @endsection
