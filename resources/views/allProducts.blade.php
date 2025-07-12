@@ -12,6 +12,12 @@
             </ul>
 @endsection
 
+@section('Count')
+@isset($cart_items) ( {{$cart_items}} ) Unique items, ( {{$cart_count}} ) Total amount @endisset
+@empty($cart_count)  @endempty
+
+@endsection
+
 @section('content')
 <div class='grid-container'>
 
@@ -26,11 +32,12 @@
       <div class='details-container'>
         <div class='text-container'>
           <p class='product-name'>{{$product->name}}</p>
-          <p class='product-description'>{{ Str::limit($product->description, 50, '...') }}</p>
+          <p class='product-description'>{{ Str::limit($product->description, 50) }}</p>
         </div>
         <div class='product-add'>
-          <form action="/products" Method="POST">
+          <form action="/products/addToCart" Method="POST">
             @csrf
+            <input type="hidden" name="product_id" value="{{$product->id}}">
             <button type='submit'>add to cart</button>
           </form>
         </div>
@@ -44,9 +51,10 @@
 <style>
 .grid-container {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: 25% 25% 25% 25%;
   padding: 20px;
   margin-top: 30px;
+  place-items: center;
 }
 .grid-container > div {
   background-color:hsl(0, 0.00%, 94.50%);
@@ -81,12 +89,12 @@ nav ul + ul {
 .product-description{
   font-size: 10px !important;
   color:hsl(0, 0.00%, 80%);
-  margin:0px;
+  margin:0;
 }
 .price{
   display: flex;
   align-items: center;
-  justify-content: center; 
+  justify-content: center;
 
   position: absolute;
   top: 0;
@@ -94,8 +102,8 @@ nav ul + ul {
   width: 30px;
   height: 20px;
   background-color: hsl(147, 50%, 47%);
-  border: 1px solid black;  
-  margin: 0px;
+  border: 1px solid black;
+  margin: 0;
 }
 .product-details{
   display: flex;
@@ -107,7 +115,7 @@ nav ul + ul {
 .text-container, .details-container {
   display: flex;
   flex-direction: column;
-  gap: 10px; 
+  gap: 10px;
 }
 .image{
   position: absolute;
@@ -126,12 +134,12 @@ nav ul + ul {
   color:black;
   font-weight: bold;
   font-size: 15px !important;
-  margin: 0px;
+  margin: 0;
 }
 .product-add{
   display: flex;
   justify-content: center;
-  margin:0px;
+  margin:0;
 }
 </style>
 @endsection

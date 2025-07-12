@@ -8,7 +8,7 @@ Route::get('/', function () {
 });
 
 Route::prefix('products')->group(function(){
-    Route::get('/', [ProductController::class, 'all']);
-    Route::post('/',[ProductController::class, 'addToCart']);
+    Route::get('/', [ProductController::class, 'all'])->name('product.all');
+    Route::post('/addToCart', [ProductController::class, 'addToCart']);
     Route::get('/cart', [ProductController::class, 'cart']);
 });
