@@ -83,7 +83,10 @@ class ProductController extends Controller
 
     }
 
-    function show(){dd('hello');}
+    function show($id){
+        $product = Product::findOrFail($id);
+        return view('individual', compact('product'));
+    }
 
     function cart(){
         return view('cart');

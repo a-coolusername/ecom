@@ -60,6 +60,56 @@
                 bottom: 0;
                 width: 100%;
             }
+
+            .product-description{
+                font-size: 12px !important;
+                color:hsl(0, 0.00%, 80%);
+                margin:0;
+            }
+            .price{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                position: absolute;
+                top: 0;
+                right: 0;
+
+                background-color: hsl(147, 50%, 47%);
+                border: 1px solid black;
+                margin: 0;
+            }
+            .product-details{
+                display: flex;
+                flex-wrap: wrap;
+                text-align: left;
+                align-items: flex-end;
+                height: 100%;
+            }
+            .text-container, .details-container {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+            .image{
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+            .product-box:hover{
+                background-color: hsl(0, 0%, 71%);
+            }
+            .product-box {
+                position: relative;
+                width: 250px;
+                height: 450px;
+            }
+            .product-name{
+                color:black;
+                font-weight: bold;
+                font-size: 20px !important;
+                margin: 0;
+            }
         </style>
         @yield('styles')
 <body>
