@@ -18,6 +18,56 @@ class ProductController extends Controller
             compact('products', 'cart', 'cart_count', 'cart_items'),
             );
     }
+    function home(Request $request){
+        $products = Product::where('category_id', 1)->paginate(4);
+
+        $cart = json_decode($request->cookie('cart', '[]'), true);
+        $cart_items = count($cart);
+        $cart_count = array_sum($cart);
+        return view('allProducts',
+            compact('products', 'cart', 'cart_count', 'cart_items'),
+        );
+    }
+    function electronics(Request $request){
+        $products = Product::where('category_id', 2)->paginate(4);
+
+        $cart = json_decode($request->cookie('cart', '[]'), true);
+        $cart_items = count($cart);
+        $cart_count = array_sum($cart);
+        return view('allProducts',
+            compact('products', 'cart', 'cart_count', 'cart_items'),
+        );
+    }
+    function pets(Request $request){
+        $products = Product::where('category_id', 3)->paginate(4);
+
+        $cart = json_decode($request->cookie('cart', '[]'), true);
+        $cart_items = count($cart);
+        $cart_count = array_sum($cart);
+        return view('allProducts',
+            compact('products', 'cart', 'cart_count', 'cart_items'),
+        );
+    }
+    function games(Request $request){
+        $products = Product::where('category_id', 4)->paginate(4);
+
+        $cart = json_decode($request->cookie('cart', '[]'), true);
+        $cart_items = count($cart);
+        $cart_count = array_sum($cart);
+        return view('allProducts',
+            compact('products', 'cart', 'cart_count', 'cart_items'),
+        );
+    }
+    function clothes(Request $request){
+        $products = Product::where('category_id', 5)->paginate(4);
+
+        $cart = json_decode($request->cookie('cart', '[]'), true);
+        $cart_items = count($cart);
+        $cart_count = array_sum($cart);
+        return view('allProducts',
+            compact('products', 'cart', 'cart_count', 'cart_items'),
+        );
+    }
     function addToCart(Request $request){
         $products = Product::all();
         $product_id = $request->input('product_id');

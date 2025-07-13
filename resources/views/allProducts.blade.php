@@ -4,8 +4,8 @@
 @section('header')
             <ul style="background-color: #004080;">
                 <li><a href="/products">All</a></li>
-                <li><a href="/products/Electronics">Home</a></li>
-                <li><a href="/products/Home">Electronics</a></li>
+                <li><a href="/products/Home">Home</a></li>
+                <li><a href="/products/Electronics">Electronics</a></li>
                 <li><a href="/products/Pets">Pets</a></li>
                 <li><a href="/products/Games">Games</a></li>
                 <li><a href="/products/Clothes">Clothes</a></li>
@@ -38,7 +38,7 @@
           <form action="/products/addToCart" Method="POST">
             @csrf
             <input type="hidden" name="product_id" value="{{$product->id}}">
-            <button type='submit'>add to cart</button>
+            <button type='submit' class="btn btn-primary">add to cart</button>
           </form>
         </div>
       </div>
@@ -60,7 +60,6 @@
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
   padding: 20px;
-  margin-top: 30px;
   place-items: center;
 }
 .grid-container > div {
@@ -94,7 +93,7 @@ nav ul + ul {
 
 
 .product-description{
-  font-size: 10px !important;
+  font-size: 12px !important;
   color:hsl(0, 0.00%, 80%);
   margin:0;
 }
@@ -106,8 +105,7 @@ nav ul + ul {
   position: absolute;
   top: 0;
   right: 0;
-  width: 30px;
-  height: 20px;
+
   background-color: hsl(147, 50%, 47%);
   border: 1px solid black;
   margin: 0;
@@ -134,13 +132,13 @@ nav ul + ul {
 }
 .product-box {
   position: relative;
-  width: 200px;
-  height: 400px;
+  width: 250px;
+  height: 450px;
 }
 .product-name{
   color:black;
   font-weight: bold;
-  font-size: 15px !important;
+  font-size: 20px !important;
   margin: 0;
 }
 .product-add{
