@@ -48,13 +48,7 @@
           <p class='product-name'>{{$product->name}}</p>
           <p class='product-description'>{{ Str::limit($product->description, 50) }}</p>
         </div>
-        <div class='product-add'>
-          <form action="/products/addToCart" Method="POST">
-            @csrf
-            <input type="hidden" name="product_id" value="{{$product->id}}">
-            <button type='submit' class="btn btn-primary">add to cart</button>
-          </form>
-        </div>
+        @include('addToCartButton')
       </div>
     </div>
   </div>
@@ -106,12 +100,6 @@ nav ul + ul {
 }
 
 
-
-.product-add{
-  display: flex;
-  justify-content: center;
-  margin:0;
-}
 .pages{
     margin:0;
     background: hsl(210, 100%, 35.5%);
