@@ -77,6 +77,7 @@
         </div>
 
         <footer>
+            @yield('footer')
             <p>E-commerce Website 2025</p>
         </footer>
     </body>

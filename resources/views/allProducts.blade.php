@@ -4,16 +4,16 @@
 @section('header')
             <ul style="background-color: #004080;">
                 <li><a href="/products">All</a></li>
-                <li><a href="#">Electronics</a></li>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Pets</a></li>
-                <li><a href="#">Games</a></li>
-                <li><a href="#">Clothes</a></li>
+                <li><a href="/products/Electronics">Home</a></li>
+                <li><a href="/products/Home">Electronics</a></li>
+                <li><a href="/products/Pets">Pets</a></li>
+                <li><a href="/products/Games">Games</a></li>
+                <li><a href="/products/Clothes">Clothes</a></li>
             </ul>
 @endsection
 
 @section('Count')
-@isset($cart_items) ( {{$cart_items}} ) Unique items, ( {{$cart_count}} ) Total amount @endisset
+@if ($cart_items>0)( {{$cart_items}} ) Unique items, ( {{$cart_count}} ) Total amount @endif
 @empty($cart_count)  @endempty
 
 @endsection
@@ -47,6 +47,13 @@
 @endforeach
 </div>
 @endsection
+
+@section('footer')
+    <div class="pages">
+        {{ $products->links('pagination::bootstrap-4') }}
+    </div>
+@endsection
+
 @section('styles')
 <style>
 .grid-container {
@@ -140,6 +147,10 @@ nav ul + ul {
   display: flex;
   justify-content: center;
   margin:0;
+}
+.pages{
+    margin:0;
+    background: hsl(210, 100%, 35.5%);
 }
 </style>
 @endsection
