@@ -15,15 +15,30 @@
 @section('Count')
 @if ($cart_items>0)( {{$cart_items}} ) Unique items, ( {{$cart_count}} ) Total amount @endif
 @empty($cart_count)  @endempty
-
 @endsection
+
+
+ @section('scripts')
+     <script>
+         document.querySelectorAll('.product-box').forEach(box => {
+             box.addEventListener('click', function () {
+                 const productId = this.getAttribute('data-id');
+                 window.location.href = `/products/${productId}`;
+             });
+         });
+     </script>
+
+ @endsection
+
 
 @section('content')
 <div class='grid-container'>
 
 
 @foreach ( $products as $product)
-  <div class='product-box'>
+    <input type="hidden" value="{{$product->id}}" name="id">
+  <div class='product-box' data-id="{{ $product->id }}">
+
     <p class='price'>${{$product->price}}</p>
 
     <img src="{{ asset('storage/' . $product->image) }}" alt="Image Not Found" width="150" height="300" class='image'>
@@ -127,8 +142,8 @@ nav ul + ul {
   top: 0;
   left: 0;
 }
-.price:hover{
-  background-color: hsl(147, 50%, 30%);
+.product-box:hover{
+  background-color: hsl(0, 0%, 71%);
 }
 .product-box {
   position: relative;

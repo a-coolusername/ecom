@@ -82,6 +82,9 @@ class ProductController extends Controller
             ->withCookie($cookie);
 
     }
+
+    function show(){dd('hello');}
+
     function cart(){
         return view('cart');
     }
