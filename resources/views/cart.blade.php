@@ -74,10 +74,10 @@
         }
 
 
-            .product-image img {
-                max-width: 100%;
-                max-height: 200px;
-            }
+        .product-image img {
+            max-width: 100%;
+            max-height: 200px;
+        }
 
         .checkout-button{
             display: flex;

@@ -98,4 +98,38 @@ class ProductController extends Controller
         $cartProducts = Product::whereIn('id', $productIds)->get();
         return view('cart', compact('cartProducts'));
     }
+
+    function checkout(Request $request){
+        $cartItems = json_decode($request->cookie('cart', '[]'), true);
+        $productIds = array_keys($cartItems);
+        $cartProducts = Product::whereIn('id', $productIds)->get();
+
+        $items = array();
+        $sum = 0;
+
+        foreach ($cartProducts as $product) {
+            $quantity = $cartItems[$product->id];
+            $totalPrice = $product->price * $quantity;
+            $sum += $totalPrice;
+
+            $items[] = [
+                'name' => $product->name,
+                'price' => $product->price,
+                'quantity' => $quantity,
+                'total' => $totalPrice,
+            ];
+        }
+
+        //foreach ($cartProducts as $cartProduct) {
+        //            $name = $cartProduct->name;
+        //            $price = $cartProduct->price;
+        //            $quantity = array_values($cartItems);
+        //        }
+
+        return view('checkout', compact('sum', 'items'));
+    }
+
+    function purchase(){
+        return view('purchase');
+    }
 }
