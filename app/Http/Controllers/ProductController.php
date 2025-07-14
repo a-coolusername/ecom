@@ -94,6 +94,8 @@ class ProductController extends Controller
 
     function cart(Request $request){
         $cartItems = json_decode($request->cookie('cart', '[]'), true);
-        return view('cart', compact('cartItems'));
+        $productIds = array_keys($cartItems);
+        $cartProducts = Product::whereIn('id', $productIds)->get();
+        return view('cart', compact('cartProducts'));
     }
 }
