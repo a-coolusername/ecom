@@ -85,10 +85,15 @@ class ProductController extends Controller
 
     function show($id){
         $product = Product::findOrFail($id);
-        return view('individual', compact('product'));
+        // $category = Product::findOrFail($product->category_id);  --> this looks for id = $product->category_id
+        $relatedProducts = Product::where('category_id', $product->category_id)
+            ->where('id', '!=', $id)
+            ->paginate(4);
+        return view('individual', compact('product', 'relatedProducts'));
     }
 
-    function cart(){
-        return view('cart');
+    function cart(Request $request){
+        $cartItems = json_decode($request->cookie('cart', '[]'), true);
+        return view('cart', compact('cartItems'));
     }
 }
