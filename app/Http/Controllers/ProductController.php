@@ -96,7 +96,7 @@ class ProductController extends Controller
         $cartItems = json_decode($request->cookie('cart', '[]'), true);
         $productIds = array_keys($cartItems);
         $cartProducts = Product::whereIn('id', $productIds)->get();
-        return view('cart', compact('cartProducts'));
+        return view('cart', compact('cartProducts', 'cartItems'));
     }
 
     function checkout(Request $request){
@@ -127,6 +127,23 @@ class ProductController extends Controller
         //        }
 
         return view('checkout', compact('sum', 'items'));
+    }
+
+    function removeFromCart(Request $request)
+    {
+        $cartItems = json_decode($request->cookie('cart', '[]'), true);
+        $product_id = $request->input('product_id');
+
+        if (isset($cartItems[$product_id])) {
+            $cartItems[$product_id]--;
+
+            if ($cartItems[$product_id] <= 0) {
+                unset($cartItems[$product_id]);
+            }
+        }
+
+        $cookie = cookie('cart', json_encode($cartItems), 60);
+        return redirect()->route('product.cart')->withCookie($cookie);
     }
 
     function purchase(){

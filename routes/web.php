@@ -10,7 +10,8 @@ Route::get('/', function () {
 Route::prefix('products')->group(function(){
     Route::get('/', [ProductController::class, 'all'])->name('product.all');
     Route::post('/addToCart', [ProductController::class, 'addToCart']);
-    Route::get('/cart', [ProductController::class, 'cart']);
+    Route::post('/cart', [ProductController::class, 'removeFromCart']);
+    Route::get('/cart', [ProductController::class, 'cart'])->name('product.cart');
     Route::get('/Home', [ProductController::class, 'home']);
     Route::get('/Electronics', [ProductController::class, 'electronics']);
     Route::get('/Pets', [ProductController::class, 'pets']);

@@ -6,10 +6,20 @@
             <div class="product-image">
                 <img src="{{ asset('storage/' . $product->image) }}" alt="Image Not Found" width="150" height="300">
             </div>
-            <div class="product-details">
+            <div class="product-details" style="margin-left: auto">
                 <p class="product-name">{{ $product->name }}</p>
                 <p class="product-description">{{ $product->description }}</p>
                 <p class="product-price">${{ $product->price }}</p>
+            </div>
+            <div class="remove-from-cart">
+                @foreach ($cartProducts as $quantity)
+                    <p>{{ $cartItems[$quantity->id] }}</p>
+                @endforeach
+                <form method="post" action="/products/cart">
+                    @csrf
+                    <input type="hidden" name="product_id" value="{{$product->id}}">
+                    <button type="submit" class="btn btn-danger" style="position: absolute; bottom: 5px; right: 5px;">Remove from cart</button>
+                </form>
             </div>
         </div>
     @endforeach
@@ -17,8 +27,12 @@
     <div class='checkout-button'>
         <form action="/products/Checkout" Method="POST">
             @csrf
-            <input type="hidden" name="product_id" value="{{$product->id}}">
-            <button type='submit' class="btn btn-primary">Checkout</button>
+            @if(isset($product))
+                <input type="hidden" name="product_id" value="{{$product->id}}">
+                <button type='submit' class="btn btn-primary">Checkout</button>
+            @else <p>cart is empty</p>
+            @endif
+
         </form>
     </div>
 @endsection
@@ -27,6 +41,7 @@
     <style>
 
         .product-card {
+            position: relative;
             display: flex;
             gap: 20px;
             flex-wrap: wrap;
