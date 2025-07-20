@@ -21,3 +21,9 @@ Route::prefix('products')->group(function(){
     Route::post('/Checkout', [ProductController::class, 'checkout']);
     Route::post('/purchase', [ProductController::class, 'purchase']);
 });
+
+Route::fallback(function () {});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
