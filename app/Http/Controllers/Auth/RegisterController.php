@@ -76,6 +76,6 @@ class RegisterController extends Controller
 
     protected function registered(Request $request, $user)
     {
-        Mail::to($user->email)->send(new Welcome($user));
+        Mail::to($user->email)->send(new Welcome($user->name));
     }
 }

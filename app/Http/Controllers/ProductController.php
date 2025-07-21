@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Mail\OrderConfirmation;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Tests\Integration\Queue\Order;
 
 class ProductController extends Controller
 {
@@ -146,7 +149,32 @@ class ProductController extends Controller
         return redirect()->route('product.cart')->withCookie($cookie);
     }
 
-    function purchase(){
+    function purchase(Request $request){
+        $cartItems = json_decode($request->cookie('cart', '[]'), true);
+        $productIds = array_keys($cartItems);
+        $cartProducts = Product::whereIn('id', $productIds)->get();
+        $items = array();
+        $sum = 0;
+
+        foreach ($cartProducts as $product) {
+            $quantity = $cartItems[$product->id];
+            $totalPrice = $product->price * $quantity;
+            $sum += $totalPrice;
+
+            $items[] = [
+                'name' => $product->name,
+                'price' => $product->price,
+                'quantity' => $quantity,
+                'total' => $totalPrice,
+            ];
+        }
+
+
+
+        $user = auth()->user();
+        if ($user){
+        Mail::to($user->email)->send(new OrderConfirmation($user->name, $items));
+        }
         return view('purchase');
     }
 }
