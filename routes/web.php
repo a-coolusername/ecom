@@ -1,11 +1,11 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/account', [UserController::class, 'account']);
+Route::post('/account', [UserController::class, 'changePassword']);
 
 Route::prefix('products')->group(function(){
     Route::get('/', [ProductController::class, 'all'])->name('product.all');

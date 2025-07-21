@@ -7,7 +7,7 @@
 <body>
 <h1>Your order is ready to be shipped!</h1>
 <h2>Order review:</h2>
-<table border="1" cellpadding="10" cellspacing="0">
+<table>
     <thead>
     <tr>
         <th>Product</th>

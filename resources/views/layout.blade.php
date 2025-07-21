@@ -115,7 +115,7 @@
 <body>
         <nav>
             <ul>
-                <li><a href="/">Home</a></li>
+                <li><a href="/account">Your Account</a></li>
                 <li><a href="/products">Products</a></li>
                 <li><a href="/products/cart">Cart @yield('Count')</a></li>
             </ul>
