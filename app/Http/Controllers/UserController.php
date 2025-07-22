@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -20,11 +19,13 @@ class UserController extends Controller
             === $request->input('confirm-new-password')) {
             $user->password = Hash::make($request->input('new-password'));
             $user->save();
-            echo 'password changed successfully';
+            return redirect('/account')->with('success', 'Password Changed');
         } elseif (Hash::make($request->input('old-password')) !== $user->password
             && $request->input('new-password') === $request->input('confirm-new-password')) {
-            echo 'old password entered wrong';
+            return redirect('/account')->with('error-old', 'Old password wrong');
         }
-        return redirect('/account');
+        else{
+            return redirect('/account')->with('error-other', 'Something went wrong');
+        }
     }
 }
