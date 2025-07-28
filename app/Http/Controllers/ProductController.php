@@ -7,10 +7,19 @@ use App\Mail\OrderConfirmation;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Tests\Integration\Queue\Order;
+use App\Http\Resources\ProductResource;
+use App\Services\ProductQuery\ProductQuery;
+
 
 class ProductController extends Controller
 {
+
+    function index(request $request){
+        $filter = new ProductQuery();
+        $queryitems = $filter->transform($request); //column | operator | value
+        return ProductResource::collection(Product::where($queryitems)->paginate(10));
+    }
+
     function all(Request $request){
         $products = Product::paginate(4);
 
@@ -99,6 +108,11 @@ class ProductController extends Controller
         $cartItems = json_decode($request->cookie('cart', '[]'), true);
         $productIds = array_keys($cartItems);
         $cartProducts = Product::whereIn('id', $productIds)->get();
+
+        if (empty($cartItems)) {
+            return redirect()->route('product.cart')->with('message', 'Your cart is empty.');
+        }
+
         return view('cart', compact('cartProducts', 'cartItems'));
     }
 
@@ -121,6 +135,10 @@ class ProductController extends Controller
                 'quantity' => $quantity,
                 'total' => $totalPrice,
             ];
+        }
+
+        if (empty($cartItems)) {
+            return redirect()->route('product.cart')->with('message', 'Your cart is empty.');
         }
 
         //foreach ($cartProducts as $cartProduct) {
