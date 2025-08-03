@@ -12,9 +12,9 @@
                 <p class="product-price">${{ $product->price }}</p>
             </div>
             <div class="remove-from-cart">
-                @foreach ($cartProducts as $quantity)
-                    <p>{{ $cartItems[$quantity->id] }}</p>
-                @endforeach
+
+                    <p>{{ $cartItems[$product->id] }}</p>
+
                 <form method="post" action="/products/cart">
                     @csrf
                     <input type="hidden" name="product_id" value="{{$product->id}}">
