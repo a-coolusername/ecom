@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Exception;
+use function Symfony\Component\Translation\t;
 
 
 class AuthController extends Controller
@@ -90,6 +91,13 @@ class AuthController extends Controller
             return response()->json(['error' => 'Failed to update user'], 500);
         }
     }
+
+    // used in testing
+//    public function cart(Request $request){
+//        $cart_api = $request->cookie('cart');
+//          //  dd($cart_api);
+//        return response()->json(['success' => json_decode($cart_api, true)], 200);
+//    }
 }
 
 

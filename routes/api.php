@@ -4,6 +4,7 @@ use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use Illuminate\Cookie\Middleware\EncryptCookies;
 
 // apiResource route expects to map to index, show, store, update, destroy, etc, im using home, all, clothes, etc.
 //Route::group(['prefix'=>'products'], function (){
@@ -32,6 +33,10 @@ Route::get('/', function () {
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+// used in testing
+//Route::middleware(['web', EncryptCookies::class])
+//    ->get('/cart', [AuthController::class, 'cart'])
+//    ->name('cart.api');
 
 Route::middleware('jwt')->group(function () {
     Route::get('/user', [AuthController::class, 'getUser']);

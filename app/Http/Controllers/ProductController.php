@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Mail\OrderConfirmation;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use App\Models\orders;
 use App\Http\Resources\ProductResource;
 use App\Services\ProductQuery\ProductQuery;
 
@@ -188,11 +190,22 @@ class ProductController extends Controller
         }
 
 
-
-        $user = auth()->user();
-        if ($user){
-        Mail::to($user->email)->send(new OrderConfirmation($user->name, $items));
+        if (Auth::user()) {
+            $cookie = cookie('cart', json_encode($cartItems), 60);
+//            dd($cookie);
+            $cartJson = $request->cookie('cart');
+//            dd($cartJson);
+            orders::create([
+                'purchased at' =>  date('Y-m-d H:i:s'),
+                'order' => $cartJson,
+            ]);
+//    used in testing        return response()->redirectToRoute('cart.api')->withCookie($cookie);
         }
+
+//        $user = auth()->user();
+//        if ($user){
+//        Mail::to($user->email)->send(new OrderConfirmation($user->name, $items));
+//        }
         return view('purchase');
     }
 }
