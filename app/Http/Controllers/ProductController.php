@@ -12,6 +12,7 @@ use App\Models\orders;
 use App\Models\OrderDetails;
 use App\Http\Resources\ProductResource;
 use App\Services\ProductQuery\ProductQuery;
+use function Webmozart\Assert\Tests\StaticAnalysis\string;
 
 
 class ProductController extends Controller
@@ -196,14 +197,14 @@ class ProductController extends Controller
 //            dd($cookie);
             $cartJson = $request->cookie('cart');
 //            dd($cartJson);
-            $order = orders::create([
+            $order = Orders::create([
                 'purchased at' =>  date('Y-m-d H:i:s'),
                 'user_id' => Auth::id(),
             ]);
             OrderDetails::create([
                 'order_id' => $order->id,
-                'product_name' => $cartItems,
-                'quantity' => $cartItems,
+                'product_name' => implode($cartItems),
+                'quantity' => implode($cartItems),
             ]);
 //    used in testing        return response()->redirectToRoute('cart.api')->withCookie($cookie);
         }
