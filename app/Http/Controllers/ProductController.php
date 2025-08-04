@@ -205,7 +205,7 @@ class ProductController extends Controller
             foreach ($cartItems as $item => $quantity) {
             OrderDetails::create([
                 'order_id' => $order->id,
-                'product_name' => $item,
+                'product_id' => $item,
                 'quantity' => $quantity,
 
             ]);
