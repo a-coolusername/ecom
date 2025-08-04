@@ -198,14 +198,18 @@ class ProductController extends Controller
             $cartJson = $request->cookie('cart');
 //            dd($cartJson);
             $order = Orders::create([
-                'purchased at' =>  date('Y-m-d H:i:s'),
+                'created_at' =>  date('Y-m-d H:i:s'),
                 'user_id' => Auth::id(),
+
             ]);
+            foreach ($cartItems as $item => $quantity) {
             OrderDetails::create([
                 'order_id' => $order->id,
-                'product_name' => implode($cartItems),
-                'quantity' => implode($cartItems),
+                'product_name' => $item,
+                'quantity' => $quantity,
+
             ]);
+            };
 //    used in testing        return response()->redirectToRoute('cart.api')->withCookie($cookie);
         }
 

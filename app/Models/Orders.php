@@ -9,8 +9,7 @@ use Users;
 class Orders extends Model
 {
     protected $table = 'orders';
-    public $timestamps = false;
-    protected $fillable = ['purchased at', 'order', 'user_id'];
+    protected $fillable = ['order', 'user_id', 'created_at', 'updated_at'];
     use HasFactory;
     public function User(){
         return $this->belongsTo(users::class);
