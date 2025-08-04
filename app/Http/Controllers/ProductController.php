@@ -9,6 +9,7 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Models\orders;
+use App\Models\OrderDetails;
 use App\Http\Resources\ProductResource;
 use App\Services\ProductQuery\ProductQuery;
 
@@ -195,9 +196,14 @@ class ProductController extends Controller
 //            dd($cookie);
             $cartJson = $request->cookie('cart');
 //            dd($cartJson);
-            orders::create([
+            $order = orders::create([
                 'purchased at' =>  date('Y-m-d H:i:s'),
-                'order' => $cartJson,
+                'user_id' => Auth::id(),
+            ]);
+            OrderDetails::create([
+                'order_id' => $order->id,
+                'product_name' => $cartItems,
+                'quantity' => $cartItems,
             ]);
 //    used in testing        return response()->redirectToRoute('cart.api')->withCookie($cookie);
         }
