@@ -210,7 +210,6 @@ class ProductController extends Controller
 
             ]);
             };
-//    used in testing        return response()->redirectToRoute('cart.api')->withCookie($cookie);
         }
 
 //        $user = auth()->user();

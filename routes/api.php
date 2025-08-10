@@ -33,10 +33,10 @@ Route::get('/', function () {
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-// used in testing
-//Route::middleware(['web', EncryptCookies::class])
-//    ->get('/cart', [AuthController::class, 'cart'])
-//    ->name('cart.api');
+
+Route::middleware(['web', EncryptCookies::class])
+    ->get('/cart', [AuthController::class, 'cart'])
+    ->name('cart.api');
 
 Route::middleware('jwt')->group(function () {
     Route::get('/user', [AuthController::class, 'getUser']);

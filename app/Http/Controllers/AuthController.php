@@ -93,11 +93,10 @@ class AuthController extends Controller
     }
 
     // used in testing
-//    public function cart(Request $request){
-//        $cart_api = $request->cookie('cart');
-//          //  dd($cart_api);
-//        return response()->json(['success' => json_decode($cart_api, true)], 200);
-//    }
+    public function cart(Request $request){
+        $cart_api = $request->cookie('cart');
+      return response()->json(['success' => json_decode($cart_api, true) ?? "empty cart, re-order"], 200);
+   }
 }
 
 
